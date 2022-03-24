@@ -1,0 +1,15 @@
+
+.main-container {
+  margin: 20px;
+  background-color: #fff;
+}
+
+.cards-container {
+  display: flex;
+}
+
+.posts-title {
+  font-weight: 500;
+  font-size: 22px;
+  margin: 10px 20px;
+}

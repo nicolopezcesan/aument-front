@@ -1,0 +1,7 @@
+.chip {
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 7px;
+    border-radius: 5px;
+    background-color: #84d18e;
+  }
