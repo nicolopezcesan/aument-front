@@ -3,11 +3,21 @@ import { AxiosService } from './AxiosService';
 export interface IPost {
   _id: string
   title: string
-  text: string
+  text?: string
   image: string
-  tag: string
   date: string
+  tag: {
+    label: string,
+    color: string,
+  }
 }
+
+interface IPostResponse {
+  status: string
+  data: IPost[]
+}
+
+type GetPostRequest = Pick<IPost, '_id'>;
 
 export class PostService extends AxiosService {
   private static instance: PostService;
@@ -19,20 +29,21 @@ export class PostService extends AxiosService {
     return PostService.instance;
   }
 
-  getPost = async (specs: any): Promise<IPost[]> => {
+  getPost = async (specs?: GetPostRequest): Promise<IPost[]> => {
     try {
       const url: string = '/posts';
-      const response: any = await this.axios.get(url, specs);
+      const request = { params: { id: specs?._id } };
+      const response: IPostResponse = await this.axios.get(url, request ?? {});
       return response.data;
     } catch (error) {
       throw error;
     }
   };
 
-  createPost = async (specs: any): Promise<any> => {
+  updatePost = async (specs: any): Promise<any> => {
     try {
       const url: string = '/posts';
-      const response: any = await this.axios.post(url, specs, {});
+      const response: any = await this.axios.put(url, {}, specs);
       return response;
     } catch (error) {
       throw error;

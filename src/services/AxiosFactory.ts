@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class AxiosFactory {
+
   private static headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
