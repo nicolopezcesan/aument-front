@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as Path from '../constants/routes';
 import PostEdit from '../views/PostEdit/PostEdit';
 import Posts from '../views/PostList/PostList';
-import PostPreview from '../views/PostPreview/PostPreview';
 
 const RouterApp = () => {
   return (
@@ -23,10 +22,6 @@ const RouterApp = () => {
           element={<Posts />}
         />
 
-        <Route
-          path="/post/:postId"
-          element={<PostPreview />}
-        />
       </Routes>
 
     </BrowserRouter>
