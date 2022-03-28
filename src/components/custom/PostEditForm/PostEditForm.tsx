@@ -31,8 +31,8 @@ const PostEditForm = (props: IProps) => {
 
       <div className='form-field'>
         <label>Title</label>
-        <textarea name="title" id="post-title" rows={5} cols={3} {...formProps} maxLength={130} />
-        <div>
+        <textarea name="title" id="post-title" value={data['title']} rows={5} cols={3} {...formProps} maxLength={130} />
+        <div className='title-validation-message'>
           <label>130 character maximum</label>
           <label>{`${data.title.length}/130`}</label>
         </div>
@@ -57,7 +57,9 @@ const PostEditForm = (props: IProps) => {
         <input type="text" name="date" id="post-date" {...formProps} />
       </div>
 
+      <div className='form-field'>
       <input type="button" value="Save" onClick={submit} />
+      </div>
     </div>
   )
 }

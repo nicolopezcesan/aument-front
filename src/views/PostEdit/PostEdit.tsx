@@ -5,14 +5,17 @@ import PostEditForm from '../../components/custom/PostEditForm/PostEditForm';
 import { POST_NOT_EXIST } from '../../constants/messages';
 import './styles.css';
 import Post from '../../components/custom/Post/Post';
+import { SnackbarProvider, useSnackbar, VariantType } from 'notistack';
 
 const PostEdit = () => {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const PostServicesInstance = new PostService();
 
   const [post, setPost] = useState<IPost>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { postId } = useParams();
+
 
   useEffect(() => {
     const getPosts = async () => {
@@ -35,8 +38,18 @@ const PostEdit = () => {
 
   const submit = async () => {
     const request: IPost = { ...post, id: post?._id } as IPost;
-    await PostServicesInstance.updatePost(request);
+    try {
+      await PostServicesInstance.updatePost(request);
+      getSuccessSnackbar('Post has been modified successfull!');
+    } catch (error) {
+      getSuccessSnackbar('It was not possible to update the Post');
+    }
   }
+
+  const getSuccessSnackbar = (message: string) => {
+    const variant: VariantType = 'success';
+    enqueueSnackbar(message, { variant });
+  };
 
   const backToList = () => {
     navigate('/');
@@ -48,20 +61,24 @@ const PostEdit = () => {
 
   return (
     post && (
-      <div className='edit-container'>
-        <div className='edit-container-item'>
-          <PostEditForm
-            data={post}
-            onChange={setPost}
-            submit={submit} />
+      <div className='main-container'>
+        <div>
+          <input type="button" value="Back to list" onClick={backToList} />
         </div>
 
-        <div className='edit-container-item'>
-          <Post post={post} />
-        </div>
+        <div className='edit-container'>
+          <div className='form-container grid'>
+            <PostEditForm
+              data={post}
+              onChange={setPost}
+              submit={submit} />
+          </div>
 
-        <input type="button" value="Back to list" onClick={backToList} />
-      </div>
+          <div className='post-container'>
+            <Post post={post} />
+          </div>
+        </div>
+      </div >
     )
   )
 }

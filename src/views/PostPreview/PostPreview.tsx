@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import Post from '../../components/custom/Post/Post'
+import IconButtons from '../../components/ui/IconButton/IconButton';
 import { POST_NOT_EXIST } from '../../constants/messages';
 import PostService, { IPost } from '../../services/PostService';
+import EditIcon from '@mui/icons-material/Edit';
+import './styles.css';
+
 
 const PostPreview = () => {
   const navigate = useNavigate();
@@ -43,18 +47,21 @@ const PostPreview = () => {
   if (errorMessage) return <h3>{errorMessage}</h3>;
 
   return (
-    <div>
-      <input type="button" value="Back" onClick={goBack} />
+    <div className='main-container'>
+      <input type="button" value="Back to list" onClick={goBack} />
 
-      <h1>Post Preview</h1>
+      <div className='post-preview-title'>
+        <h1>Post Preview</h1>
+        <IconButtons
+          icon={<EditIcon />}
+          onClick={editPost} />
+      </div>
 
       {post && (
         <div className=''>
           <Post post={post} />
         </div>
       )}
-
-      <input type="button" value="Edit Post" onClick={editPost} />
     </div>
   )
 }

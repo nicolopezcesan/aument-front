@@ -3,6 +3,7 @@ import PostService, { IPost } from '../../services/PostService';
 import Title from '../../components/ui/Title/Title';
 import Post from '../../components/custom/Post/Post';
 import { useNavigate } from 'react-router-dom';
+import './styles.css';
 
 const PostList = () => {
   const navigate = useNavigate();
@@ -29,8 +30,9 @@ const PostList = () => {
       <Title title='Recent Posts' />
 
       <div className='cards-container'>
-        {data
-          && data.map((p: IPost) => <Post post={p} onClick={goPost} />)}
+        {data && data.map((p: IPost) => {
+          return <Post post={p} onClick={goPost} />
+        })}
       </div>
 
     </div>
