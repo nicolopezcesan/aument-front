@@ -6,6 +6,7 @@ import { POST_NOT_EXIST } from '../../constants/messages';
 import PostService, { IPost } from '../../services/PostService';
 import EditIcon from '@mui/icons-material/Edit';
 import './styles.css';
+import { LG_SIZE } from '../../components/ui/Card/Card';
 
 
 const PostPreview = () => {
@@ -59,7 +60,7 @@ const PostPreview = () => {
 
       {post && (
         <div className=''>
-          <Post post={post} />
+          <Post post={post} size={LG_SIZE}/>
         </div>
       )}
     </div>

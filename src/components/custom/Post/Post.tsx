@@ -1,15 +1,16 @@
 import React from 'react'
 import { IPost } from '../../../services/PostService'
-import Card from '../../ui/Card/Card'
+import Card, { LG_SIZE, SM_SIZE } from '../../ui/Card/Card'
 
 interface IProps {
   post: IPost,
   onClick?: Function,
+  size?: typeof LG_SIZE | typeof SM_SIZE
 }
 
 const Post = (props: IProps) => {
 
-  const { post, onClick } = props;
+  const { post, onClick, size = SM_SIZE } = props;
 
   const clickPost = () => {
     onClick && onClick(post._id)
@@ -23,7 +24,7 @@ const Post = (props: IProps) => {
         tag={post.tag}
         date={post.date}
         image={post.image}
-        size={'sm'}/>
+        size={size} />
     </div>
   )
 }

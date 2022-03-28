@@ -1,17 +1,17 @@
 import { getImagePath } from '../../../utils/images';
 import { getFormatDate } from '../../../utils/dates';
 import Chip from '../Chip/Chip';
-import './styles.css';
 import { IPost } from '../../../services/PostService';
+import './styles.css';
 
-const LG_SIZE = 'lg';
-const SM_SIZE = 'sm';
+export const LG_SIZE = 'lg';
+export const SM_SIZE = 'sm';
 
-interface IProps extends IPost {
+export interface ICardProps extends IPost {
   size?: typeof LG_SIZE | typeof SM_SIZE;
 }
 
-const Card = (props: IProps) => {
+const Card = (props: ICardProps) => {
 
   const { image, title, date, tag, _id, size = LG_SIZE } = props;
 

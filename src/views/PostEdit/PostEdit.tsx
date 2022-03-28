@@ -6,6 +6,7 @@ import { POST_NOT_EXIST } from '../../constants/messages';
 import './styles.css';
 import Post from '../../components/custom/Post/Post';
 import { SnackbarProvider, useSnackbar, VariantType } from 'notistack';
+import { LG_SIZE } from '../../components/ui/Card/Card';
 
 const PostEdit = () => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const PostEdit = () => {
           </div>
 
           <div className='post-container'>
-            <Post post={post} />
+            <Post post={post} size={LG_SIZE}/>
           </div>
         </div>
       </div >
