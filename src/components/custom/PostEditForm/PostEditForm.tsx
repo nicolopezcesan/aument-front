@@ -58,7 +58,7 @@ const PostEditForm = (props: IProps) => {
       </div>
 
       <div className='form-field'>
-      <input type="button" value="Save" onClick={submit} />
+        <input type="button" value="Save" onClick={submit} />
       </div>
     </div>
   )
